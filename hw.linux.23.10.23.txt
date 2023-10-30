@@ -1,0 +1,16 @@
+В папке с Вашим именем (подключение к серверу: ssh -i ~/.ssh/idrsa ec2-user@linux.telran-edu.de) 
+создайте скрипт taskNAME.sh, где NAME - Ваше имя.
+Скрипт должен создавать по 10 файлов с порядковым номером и датой
+создания. 120.04.23 , 220.04.23 , 320.04.23 .. 1020.04.23
+Создайте в планировщике новое задание, которое должно будет запускать 
+Ваш скрипт каждые 15 минут.
+15 * * * *
+
+nano taskPARSHUTIN.sh
+#!/bin/bash
+        for i in {1..10}
+        do
+        touch /opt/$i.$(date +"%d-%m-%Y")
+        done
+crontab -e
+15 * * * * /opt/180923_evening/parshutin/taskPARSHUTIN.sh >> /opt/180923_evening/parshutin/
